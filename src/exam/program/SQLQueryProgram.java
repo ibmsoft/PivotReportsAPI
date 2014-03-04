@@ -67,14 +67,14 @@ public class SQLQueryProgram extends Program {
         while (true) {
             try {
                 // Prompt user to enter sql
-                System.out.print("SQL> ");
-
                 String sql = br.readLine();
                 if ("QUIT".equals(sql.toUpperCase())) {
                     break;
                 }
 
-                executeSQL(sql);
+                if (!sql.trim().isEmpty()) {
+                    executeSQL(sql);
+                }
             } catch (IOException ioe) {
                 throw new RuntimeException("IO error trying to read sql!");
             }

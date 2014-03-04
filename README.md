@@ -99,7 +99,7 @@ $ ant sql
 ...
 SQL program initialized (to exit type 'QUIT').
 
-SQL> SELECT * FROM PRODUCT
+SELECT * FROM PRODUCT
 
 ---------------------------------------------------------------------
 Id                   | Name                 | ProductTypeId        |
