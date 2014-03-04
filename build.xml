@@ -1,0 +1,59 @@
+<project name="PivotReportsAPI" default="query" basedir=".">
+    <description>
+        API for pivot reports.
+    </description>
+
+    <!-- set global properties for this build -->
+    <property name="src" location="src"/>
+    <property name="build" location="build"/>
+    <property name="lib" location="lib"/>
+
+    <path id="classpath">
+        <pathelement location="${build}"/>
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="build" depends="clean" description="make build directory and compile the source" >
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}"/>
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac includeantruntime="false" srcdir="${src}" destdir="${build}" classpathref="classpath"/>
+    </target>
+
+    <target name="query" depends="build" description="query app" >
+        <!-- Run application -->
+        <java classname="exam.PivotReportsAPI" classpathref="classpath">
+            <arg value="query"/>
+            <arg value="${table}"/>
+            <arg value="${column}"/>
+            <arg value="${row}"/>
+            <arg value="${measure}"/>
+        </java>
+    </target>
+
+    <target name="iterate" depends="build" description="iterate app" >
+        <!-- Run application -->
+        <java classname="exam.PivotReportsAPI" classpathref="classpath">
+            <arg value="iterate"/>
+            <arg value="${table}"/>
+            <arg value="${column}"/>
+            <arg value="${row}"/>
+            <arg value="${measure}"/>
+        </java>
+    </target>
+
+    <target name="sql" depends="build" description="sql app" >
+        <!-- Run application -->
+        <java classname="exam.PivotReportsAPI" classpathref="classpath">
+            <arg value="sql"/>
+        </java>
+    </target>
+
+
+    <target name="clean" description="clean up">
+        <!-- Delete the ${build} directory tree -->
+        <delete dir="${build}"/>
+    </target>
+</project>
