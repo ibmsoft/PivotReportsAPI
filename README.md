@@ -49,34 +49,45 @@ USA                  | Grand Tobacco        | SAS                  | US Navy    
 ## For iteration interface
 
 ```bash
-$ ant iterate -Dtable=Country -Dcolumn=Year -Drow=Client -Dmeasure="Total Cost"
+$ ant iterate -Dtable=Country -Dcolumn=Client -Drow=Year -Dmeasure="Total Cost"
 ...
 ...
-SQL> SELECT COUNTRY.Name, CLIENT.Name, YEAR.Name,
+SQL> SELECT COUNTRY.Name, YEAR.Name, CLIENT.Name,
 (
     SELECT IFNULL(SUM(TOTALCOST), 0) FROM SALES
-    WHERE SALES.COUNTRYId = COUNTRY.Id AND SALES.CLIENTId = CLIENT.Id AND SALES.YEARId = YEAR.Id
+    WHERE SALES.COUNTRYId = COUNTRY.Id AND SALES.YEARId = YEAR.Id AND SALES.CLIENTId = CLIENT.Id
 ) AS 'Measure'
-FROM COUNTRY, CLIENT, YEAR
-ORDER BY COUNTRY.Name, CLIENT.Name, YEAR.SortId
+FROM COUNTRY, YEAR, CLIENT
+ORDER BY COUNTRY.Name, YEAR.SortId, CLIENT.Name
 
 
 Push enter to iterate, type '+' for full data or type quit to exit
 
 0
-0
-34.0
-23.0
-+
-Armenia, SAS, 2011, 33.0
-+
-Armenia, SAS, 2014, 0
-+
-Armenia, SAS, 2012, 0
-0
+33.0
 109.0
 0
+0
+0
+34.0
+0
 44.0
++
+Armenia, 2013, Grand Tobacco, 23.0
++
+Armenia, 2013, SAS, 0
++
+Armenia, 2013, US Navy, 0
++
+Brazil, 2011, Grand Tobacco, 0
++
+Brazil, 2011, SAS, 0
++
+Brazil, 2011, US Navy, 0
++
+Brazil, 2014, Grand Tobacco, 0
+65.0
+0
 ...
 DONE
 ```
