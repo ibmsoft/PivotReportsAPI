@@ -4,9 +4,11 @@ import exam.DBManager;
 import exam.query.PivotReportQuery;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
@@ -15,6 +17,34 @@ import java.sql.Statement;
 public class PivotReportIteratorProgram extends PivotReportQueryProgram {
     public PivotReportIteratorProgram(String[] args) {
         super(args);
+    }
+
+    private void iterate(ResultSet resultSet) throws SQLException, IOException {
+        System.out.println("Push enter to iterate, type '+' for full data or type 'QUIT' to exit");
+
+        // Open up standard input.
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            String token = br.readLine();
+
+            if ("".equals(token) || "+".equals(token)) {
+                if (resultSet.next()) {
+                    if ("+".equals(token)) { // Additional data.
+                        System.out.print(resultSet.getString(1) + ", " + resultSet.getString(2) + ", " +
+                                resultSet.getString(3) + ", ");
+                    }
+                    // Data.
+                    System.out.println(resultSet.getString(4));
+                } else {
+                    break;
+                }
+            } else if ("quit".equals(token.toLowerCase())) {
+                break;
+            }
+        }
+
+        System.out.println("DONE");
     }
 
     @Override
@@ -33,32 +63,7 @@ public class PivotReportIteratorProgram extends PivotReportQueryProgram {
             System.out.println("SQL> " + reportQuery.getQueryReportSQL() + "\n\n");
 
             resultSet = statement.executeQuery(reportQuery.getQueryReportSQL());
-
-            System.out.println("Push enter to iterate, type '+' for full data or type 'QUIT' to exit");
-
-            // Open up standard input.
-            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
-            while (true) {
-                String token = br.readLine();
-
-                if ("".equals(token) || "+".equals(token)) {
-                    if (resultSet.next()) {
-                        if ("+".equals(token)) { // Additional data.
-                            System.out.print(resultSet.getString(1) + ", " + resultSet.getString(2) + ", " +
-                                    resultSet.getString(3) + ", ");
-                        }
-                        // Data.
-                        System.out.println(resultSet.getString(4));
-                    } else {
-                        break;
-                    }
-                } else if ("quit".equals(token.toLowerCase())) {
-                    break;
-                }
-            }
-
-            System.out.println("DONE");
+            iterate(resultSet);
         } catch (Exception e) {
             printHelp();
             throw new RuntimeException(e.getMessage());
