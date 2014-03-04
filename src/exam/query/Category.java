@@ -13,7 +13,7 @@ public enum Category {
     public static Category validate(String key) throws IllegalArgumentException {
         try {
             // Checking if modified key is in enumeration.
-            return Category.valueOf(key.replaceAll(" ", "").toUpperCase());
+            return valueOf(key.replaceAll(" ", "").toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid category: " + key);
         }

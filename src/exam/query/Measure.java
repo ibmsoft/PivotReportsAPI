@@ -10,7 +10,7 @@ public enum Measure {
     public static Measure validate(String key) throws IllegalArgumentException {
         try {
             // Checking if modified key is in enumeration.
-            return Measure.valueOf(key.replaceAll(" ", "").toUpperCase());
+            return valueOf(key.replaceAll(" ", "").toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid measure: " + key);
         }
