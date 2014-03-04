@@ -61,7 +61,7 @@ FROM COUNTRY, YEAR, CLIENT
 ORDER BY COUNTRY.Name, YEAR.SortId, CLIENT.Name
 
 
-Push enter to iterate, type '+' for full data or type quit to exit
+Push enter to iterate, type '+' for full data or type 'QUIT' to exit
 
 0
 33.0

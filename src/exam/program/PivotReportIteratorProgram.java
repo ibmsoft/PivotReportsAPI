@@ -34,7 +34,7 @@ public class PivotReportIteratorProgram extends PivotReportQueryProgram {
 
             resultSet = statement.executeQuery(reportQuery.getQueryReportSQL());
 
-            System.out.println("Push enter to iterate, type '+' for full data or type quit to exit");
+            System.out.println("Push enter to iterate, type '+' for full data or type 'QUIT' to exit");
 
             // Open up standard input.
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
