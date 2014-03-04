@@ -4,13 +4,13 @@ package exam.query;
  * Created by gevorg on 3/3/14.
  */
 public class PivotReportQuery {
-    private static final String SQL_TEMPLATE_FOR_PIVOT = "SELECT TABLE.Name, COLUMN.Name, ROW.Name, \n" +
+    private static final String SQL_TEMPLATE_FOR_PIVOT = "SELECT TABLE.Name, ROW.Name, COLUMN.Name, \n" +
             "(\n" +
             "\tSELECT IFNULL(SUM(MEASURE), 0) FROM SALES \n" +
-            "\tWHERE SALES.TABLEId = TABLE.Id AND SALES.COLUMNId = COLUMN.Id AND SALES.ROWId = ROW.Id\n" +
+            "\tWHERE SALES.TABLEId = TABLE.Id AND SALES.ROWId = ROW.Id AND SALES.COLUMNId = COLUMN.Id\n" +
             ") AS 'Measure'\n" +
-            "FROM TABLE, COLUMN, ROW\n" +
-            "ORDER BY TABLE.Name, COLUMN.Name, ROW.Name";
+            "FROM TABLE, ROW, COLUMN\n" +
+            "ORDER BY TABLE.Name, ROW.Name, COLUMN.Name";
 
     private static final String SQL_PRODUCT_TYPE_INJECTION = "\tJOIN PRODUCT ON SALES.PRODUCTId = PRODUCT.Id\n";
 
