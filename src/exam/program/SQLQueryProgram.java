@@ -28,7 +28,7 @@ public class SQLQueryProgram extends Program {
             resultSet = statement.executeQuery(sql);
             printResultSet(resultSet);
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            System.out.println("SQL ERROR: " + e.getMessage());
         } finally {
             try {
                 resultSet.close();
@@ -70,7 +70,7 @@ public class SQLQueryProgram extends Program {
                 System.out.print("SQL> ");
 
                 String sql = br.readLine();
-                if ("QUIT".equals(sql)) {
+                if ("QUIT".equals(sql.toUpperCase())) {
                     break;
                 }
 

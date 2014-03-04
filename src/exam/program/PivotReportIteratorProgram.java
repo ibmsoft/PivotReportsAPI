@@ -53,7 +53,7 @@ public class PivotReportIteratorProgram extends PivotReportQueryProgram {
                     } else {
                         break;
                     }
-                } else if ("quit".equals(token)) {
+                } else if ("quit".equals(token.toLowerCase())) {
                     break;
                 }
             }
