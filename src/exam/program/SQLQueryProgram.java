@@ -12,7 +12,7 @@ import java.sql.*;
  */
 public class SQLQueryProgram extends Program {
     public SQLQueryProgram() {
-        System.out.println("SQL program initialized (to exit write 'QUIT').");
+        System.out.println("SQL program initialized (to exit type 'QUIT').");
     }
 
     private void executeSQL(String sql) {
