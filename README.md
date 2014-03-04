@@ -97,7 +97,7 @@ DONE
 $ ant sql
 ...
 ...
-SQL program initialized (to exit write 'QUIT').
+SQL program initialized (to exit type 'QUIT').
 
 SQL> SELECT * FROM PRODUCT
 
