@@ -1,6 +1,6 @@
 <project name="PivotReportsAPI" default="query" basedir=".">
     <description>
-        API for pivot reports.
+        API for pivot report generation.
     </description>
 
     <!-- set global properties for this build -->

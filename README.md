@@ -1,7 +1,7 @@
 PivotReportsAPI
 ======
 
-API for generating pivot reports.
+API for pivot report generation.
 
 ## Run using [ant](http://ant.apache.org/) in project directory
 
